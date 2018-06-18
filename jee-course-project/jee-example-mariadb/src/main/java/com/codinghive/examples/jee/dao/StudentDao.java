@@ -19,11 +19,11 @@ public class StudentDao implements StudentDaoLocal {
     @PersistenceContext(unitName = STUDENT_PU)
     private EntityManager em;
     
-    public void login(String loginUsername,String loginPassword) {
+    public void login(String loginprice,String loginPassword) {
     	Student student  = new Student();
-    	String loginUsernameFromDb = student.getPassword(); 
-    	System.out.println("StudentDao class.  This is the password from the db : " + " "+loginUsernameFromDb);
-    	System.out.println("StudentDao class. here will go the username and pass for login, these variables are from inside login function " + " "+loginUsername + " " +loginPassword );
+    	String loginpriceFromDb = student.getPassword(); 
+    	System.out.println("StudentDao class.  This is the password from the db : " + " "+loginpriceFromDb);
+    	System.out.println("StudentDao class. here will go the price and pass for login, these variables are from inside login function " + " "+loginprice + " " +loginPassword );
     	
     }
 
@@ -39,16 +39,29 @@ public class StudentDao implements StudentDaoLocal {
         em.merge(student);
     }
 
-    public void deleteStudent(int studentId) {
-        em.remove(getStudent(studentId));
+    public void deleteStudent(int ticketId) {
+        em.remove(getStudent(ticketId));
     }
 
-    public Student getStudent(int studentId) {
-        return em.find(Student.class, studentId);
+    public Student getStudent(int ticketId) {
+        return em.find(Student.class, ticketId);
     }
 
     public List<Student> getAllStudents() {
 		return em.createNamedQuery("Student.getAll").getResultList();
+    }
+    
+    public void reserveTicket(Student student , String ticketId) {
+    	int ticketIdToInt = Integer.parseInt(ticketId);
+    	student = em.find(Student.class, ticketIdToInt);
+    	System.out.println("I am after em.find ticketIdToInt is :: " + ticketIdToInt );
+    	em.getTransaction().begin();
+    	student.setPassword("1");
+    	em.getTransaction().commit();
+    }
+    
+    public List<Student> getReservedTickets() {
+		return em.createNamedQuery("Student.isReserved").getResultList();
     }
 
 }

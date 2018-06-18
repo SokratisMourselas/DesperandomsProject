@@ -39,8 +39,8 @@
             <div id="login" style="display:none">
                     <form action="./StudentServlet" method="POST">
                         <div class="container">
-                            <label for="uname"><b>Username</b></label>
-                            <input type="text" placeholder="Enter Username" name="loginUsername" required>
+                            <label for="uname"><b>price</b></label>
+                            <input type="text" placeholder="Enter price" name="loginprice" required>
                             <br>
                             <label for="psw"><b>Password</b></label>
                             <input type="password" placeholder="Enter Password" name="loginPassword"  required>
@@ -63,15 +63,15 @@
                           <table>
                               <tr>
                                   <td>Ticket ID</td>
-                                  <td><input type="text" name="studentId" value="${student.studentId}" /></td>
+                                  <td><input type="text" name="ticketId" value="${student.ticketId}" /></td>
                               </tr>
                               <tr>
                                   <td>Event Name</td>
-                                  <td><input type="text" name="firstname" value="${student.firstname}" /></td>
+                                  <td><input type="text" name="eventName" value="${student.eventName}" /></td>
                               </tr>
                               <tr>
                                   <td>Location</td>
-                                  <td><input type="text" name="lastname" value="${student.lastname}" /></td>
+                                  <td><input type="text" name="location" value="${student.location}" /></td>
                               </tr>
                               <tr>
                                   <td>Price</td>
@@ -80,7 +80,7 @@
                             
                               <tr>
                                   <td>Reserve now</td>
-                                  <td><input type="text" name="userName" value="" /></td>
+                                  <td><input type="text" name="price" value="" /></td>
                               </tr>
                               
                               <tr>
@@ -111,13 +111,13 @@
                         <th>Price </th>
                         <th>Reserve now </th>
                         <!--    <th>Year Level</th> -->
-                        <c:forEach items="${allStudents}" var="stud">
+                        <c:forEach items="${reserved}" var="stud">
                             <tr>
-                                <td>${stud.studentId}</td>
-                                <td>${stud.firstname}</td>
-                                <td>${stud.lastname}</td>
-                                <td>${stud.userName}</td>
-                                <td><button class="reserve_button" id=${stud.studentId} value=${stud.studentId} onClick=reserveTicket(${stud.studentId})> Reserve  </button> </td>
+                                <td>${stud.ticketId}</td>
+                                <td>${stud.eventName}</td>
+                                <td>${stud.location}</td>
+                                <td>${stud.price}</td>
+                                <td><button class="reserve_button" id=${stud.ticketId} value=${stud.ticketId} onClick=reserveTicket(${stud.ticketId})> Reserve  </button> </td>
                           <!--    <td>${stud.yearLevel}</td>  --> 
                             </tr>
                         </c:forEach>
@@ -159,7 +159,7 @@
 
                     function reserveTicket(ticket_number) {
                         alert(ticket_number);
-                    	var dataString ={"ticket_number":ticket_number,"action":"add"};
+                    	var dataString ={"ticket_number":ticket_number,"action":"reserve","isReserved":1};
 
                     	$.ajax({
                             type: "POST",
