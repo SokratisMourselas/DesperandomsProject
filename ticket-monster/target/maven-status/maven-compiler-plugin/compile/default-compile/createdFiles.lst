@@ -1,0 +1,11 @@
+org\jboss\jdf\example\ticketmonster\controller\MemberController.class
+org\jboss\jdf\example\ticketmonster\rest\MemberResourceRESTService.class
+org\jboss\jdf\example\ticketmonster\model\Member.class
+org\jboss\jdf\example\ticketmonster\data\MemberRepository.class
+org\jboss\jdf\example\ticketmonster\model\Event.class
+org\jboss\jdf\example\ticketmonster\model\Event_.class
+org\jboss\jdf\example\ticketmonster\data\MemberListProducer.class
+org\jboss\jdf\example\ticketmonster\model\Member_.class
+org\jboss\jdf\example\ticketmonster\rest\JaxRsActivator.class
+org\jboss\jdf\example\ticketmonster\service\MemberRegistration.class
+org\jboss\jdf\example\ticketmonster\util\Resources.class
