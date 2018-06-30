@@ -6,6 +6,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import de.dks.model.TicketModel;
+import de.dks.model.User;
 
 public class TestHarness {
 	
@@ -16,13 +17,11 @@ public class TestHarness {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		TicketModel ticketModel1 = new TicketModel(4, "Texas", "Athens", "30", "1");
+		TicketModel ticketModel1 = new TicketModel(6, "intestella", "Athens", "30", "1");
+		User user1 = new User(1, "filip123go", "6946576152", "stavros489@hotmail.com", 30, "male");
 		
 		em.persist(ticketModel1);
-		tx.commit();
-		
-		tx.begin();
-		System.out.println(ticketModel1.toString());
+		em.persist(user1);
 		tx.commit();
 		em.close();
 	}
