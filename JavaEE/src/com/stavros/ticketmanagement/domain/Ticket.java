@@ -36,13 +36,13 @@ public class Ticket implements java.io.Serializable {
 	@OneToMany(cascade=CascadeType.PERSIST) // in the events of an un-persistence obj being found in the Nnotes collection jpa is free to automatically call persist on that obj
 	private Set<Note> notes; //this is used to keep a reference of the relative notes to each ticket. Its a collection (Set is better for DBs)Set: collection on obj with no particular order and no duplicate obj
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
-	private Set<User> users;
+//	@ManyToOne  //(cascade=CascadeType.PERSIST) // this should be manytoone
+//	private Set<User> users;
 	
 	public Ticket(int ticketId, String eventName, String eventTime, int price, int isReserved) {
 		super();
 		this.notes = new HashSet<Note>();
-		this.users = new HashSet<User>();
+//		this.users = new HashSet<User>();
 		this.ticketId = ticketId;
 		this.eventName = eventName;
 		this.eventTime = eventTime;
@@ -68,10 +68,10 @@ public class Ticket implements java.io.Serializable {
 	}
 	
 	//add a user
-	public void addUser(int userId, String userName, String password, String email, int accessLevel) {
-		User newUser=new User(userId, userName, password, email, accessLevel);
-		this.users.add(newUser);
-	}
+//	public void addUser(int userId, String userName, String password, String email, int accessLevel) {
+//		User newUser=new User(userId, userName, password, email, accessLevel);
+//		this.users.add(newUser);
+//	}
 	
 	
 
