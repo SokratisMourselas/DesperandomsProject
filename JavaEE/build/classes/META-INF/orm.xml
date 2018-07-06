@@ -1,0 +1,38 @@
+<entity-mappings
+	xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="2.1">
+	
+
+	<entity class="com.stavros.ticketmanagement.domain.Ticket">
+	
+		<named-query name="searchByEventName">
+		
+			<query>
+				SELECT ticket FROM Ticket ticket WHERE ticket.eventName = :SearchEvent AND ticket.isReserved = :isReserved
+			</query>
+		
+		</named-query>
+		
+				<named-query name="selectAllTickets">
+		
+			<query>
+				SELECT ticket FROM Ticket ticket
+			</query>
+		
+		</named-query>
+		
+		
+		<named-query name="selectAllTicketsCount"> <!-- Return the amount of tickets. Also available min, max, sum, avg , not used yet in code-->
+		
+			<query>
+				SELECT count(ticket) FROM Ticket ticket
+			</query>
+		
+		</named-query>
+		
+		
+	
+	</entity>
+	
+</entity-mappings>

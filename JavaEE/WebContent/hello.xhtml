@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+      <h:body>
+      
+        <h:form>
+      	   <h3>Hello, please enter your name</h3>
+      	
+      	   <label>Name</label>
+      	
+      	   <h:inputText value="#{userBean.firstName}"/>
+      	
+      	   <h:commandButton value="Go to the welcome page" action="#{userBean.greetUser}"/>
+      	</h:form>
+      
+      </h:body>
+      
+</html>

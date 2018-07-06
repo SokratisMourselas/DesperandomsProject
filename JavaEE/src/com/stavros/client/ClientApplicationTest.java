@@ -7,7 +7,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.stavros.ticketmanagement.TicketManagmentService;
+import com.stavros.ticketmanagement.TicketManagmentServiceRemote;
 import com.stavros.ticketmanagement.domain.Ticket;
 
 public class ClientApplicationTest {
@@ -18,7 +18,7 @@ public class ClientApplicationTest {
 			
 			Context jndi = new InitialContext();
 				
-			TicketManagmentService service =(TicketManagmentService) jndi.lookup("java:global/TicketMaanagement/TicketManagementImplrmrntation");
+			TicketManagmentServiceRemote service =(TicketManagmentServiceRemote) jndi.lookup("java:global/TicketMaanagement/TicketManagementImplrmrntation");
 			
 			List<Ticket> tickets = service.getAllTicket();
 			

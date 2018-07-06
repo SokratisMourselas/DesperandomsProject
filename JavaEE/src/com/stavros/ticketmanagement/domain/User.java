@@ -23,7 +23,7 @@ public class User {
 	private String email;
 	private int accessLevel;
 	private double token;
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.MERGE)
 	private Set<Ticket> tickets; // this is our collection so we can keep multiple instances of tickets
 	
 	

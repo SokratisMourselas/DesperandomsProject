@@ -5,31 +5,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import com.stavros.ticketmanagement.domain.Ticket;
 
 @Stateless
 public class TicketDataAccessImplementation implements TicketDataAccess {
+	
+	@PersistenceContext
+	private EntityManager em;
 
-	@Override
-	public void insert(Ticket newTicket) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
+
+
 	public List<Ticket> findAll() {
-		List<Ticket> tempList = new ArrayList<Ticket>();
-		tempList.add(new Ticket(1, "temp", "temp", 100000, 1));
-		return tempList;
+//		Query q=em.createNamedQuery("selectAllTickets");
+		Query q = em.createQuery("SELECT ticket FROM Ticket ticket");	
+		List<Ticket> results = q.getResultList();
+		return results;
 	}
 
-	@Override
 	public List<Ticket> findByEventName(String eventName) {
-		List<Ticket> tempList = new ArrayList<Ticket>();
-		tempList.add(new Ticket(1, "temp", "temp", 100000, 1));
-		return tempList;
+		Query q = em.createQuery("SELECT ticket FROM Ticket ticket WHERE ticket.eventName = :SearchEvent");
+		q.setParameter("SearchEvent", eventName);
+		return q.getResultList();
 	}
+	
+	public void insert(Ticket newTicket) {
+		em.persist(newTicket);
+		
+	} 
 
 
 }

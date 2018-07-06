@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<title>Enter New Ticket</title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+		<h3>Hello, please fill the following form to create a new Ticket</h3>
+
+		<p><label>Ticket id </label>   <h:inputText value="#{enterTicketBean.ticketId}" />   </p>
+		<p><label>Event Name </label>  <h:inputText value="#{enterTicketBean.eventName}" />  </p>
+		<p><label>Event Time </label>  <h:inputText value="#{enterTicketBean.eventTime}" />  </p>
+		<p><label>Price </label>       <h:inputText value="#{enterTicketBean.price}" />      </p>	
+		<p><label>Is Reserved </label> <h:inputText value="#{enterTicketBean.isReserved}" /> </p>	
+		
+		<h:commandButton value="Submit New Ticket"	action="#{enterTicketBean.createTicket}" />
+	</h:form>
+
+</h:body>
+
+</html>

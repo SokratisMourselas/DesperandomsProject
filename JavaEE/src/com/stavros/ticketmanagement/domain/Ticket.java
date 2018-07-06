@@ -9,12 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity //Make the class usable from JPA (We store data to db with this class)
+//@XmlRootElement
 public class Ticket implements java.io.Serializable {
 	
 	
@@ -32,8 +31,8 @@ public class Ticket implements java.io.Serializable {
 	private String eventTime;
 	private int price;
 	private int isReserved;
-	
-	@OneToMany(cascade=CascadeType.PERSIST) // in the events of an un-persistence obj being found in the Nnotes collection jpa is free to automatically call persist on that obj
+	 
+	@OneToMany(cascade=CascadeType.MERGE) // in the events of an un-persistence obj being found in the Nnotes collection jpa is free to automatically call persist on that obj
 	private Set<Note> notes; //this is used to keep a reference of the relative notes to each ticket. Its a collection (Set is better for DBs)Set: collection on obj with no particular order and no duplicate obj
 	
 //	@ManyToOne  //(cascade=CascadeType.PERSIST) // this should be manytoone
@@ -42,13 +41,58 @@ public class Ticket implements java.io.Serializable {
 	public Ticket(int ticketId, String eventName, String eventTime, int price, int isReserved) {
 		super();
 		this.notes = new HashSet<Note>();
-//		this.users = new HashSet<User>();
 		this.ticketId = ticketId;
 		this.eventName = eventName;
 		this.eventTime = eventTime;
 		this.price = price;
 		this.isReserved = isReserved;
 	}
+	
+
+	public int getTicketId() {
+		return ticketId;
+	}
+
+	public void setTicketId(int ticketId) {
+		this.ticketId = ticketId;
+	}
+
+	public String getEventTime() {
+		return eventTime;
+	}
+	
+	public void setEventTime(String eventTime) {
+		this.eventTime = eventTime;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getIsReserved() {
+		return isReserved;
+	}
+
+	public void setIsReserved(int isReserved) {
+		this.isReserved = isReserved;
+	}
+
+	public Set<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(Set<Note> notes) {
+		this.notes = notes;
+	}
+
+	public String getEventName() {
+		return eventName;
+	}
+
 
 	//this is what the find*Ticket will return in TestHarness
 	public String toString() {

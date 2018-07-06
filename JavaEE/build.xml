@@ -27,7 +27,7 @@
     </path>	 
 	
     <target name="BuildAll"
-            depends="clean, prep, compile, jar"
+            depends="clean, prep, compile, jar, war"
             description="Complete rebuild.">
         <echo message="Build complete."/>
     </target>	
@@ -72,11 +72,10 @@
 	   <delete file="${jarfile}"/>
 
 	   <jar destfile="${jarfile}" basedir="${bin}">
-		   <!-- Add this when you do the JPA stuff
+
 		   <metainf dir="${src}/META-INF">
 		   	   <include name="persistence.xml"/>
 		   </metainf>
-		   -->
 		  
 	   </jar>
 	</target>

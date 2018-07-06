@@ -26,10 +26,11 @@ public class TestHarness {
 		
 		//SELECT ALL THE TICKET OBJ (USER(PAGE WERE TICKETS GET SELECTED) ADMIN)
 //		Query q = em.createQuery("SELECT ticket FROM Ticket ticket"); // this query says : SELECT all ticket objects from the Ticket class. the last "ticket" is the alias 
-//		List<Ticket> results = q.getResultList();
-		
-		//show the results of the Query q
-//		for(Ticket next : results) {
+//		Query selectAllTicketsQuery = em.createNamedQuery("selectAllTickets"); // this query is stored in orm.xml
+//		List<Ticket> selectAllTicketsResults = selectAllTicketsQuery.getResultList();
+//		
+//		//show the results of the Query q 
+//		for(Ticket next : selectAllTicketsResults) {
 //			System.out.println(next);
 //		}
 		
@@ -37,7 +38,8 @@ public class TestHarness {
 		String SearchEvent = "EvanEscence"; // here the event name from Front will return
 		int isReserved = 1; //check if is reserved
 //		Query q = em.createQuery("SELECT ticket FROM Ticket ticket WHERE ticket.eventName like'" +SearchEvent+ "' AND ticket.isReserved like'" +isReserved+ "'"); // Bad practice :( this query says : SELECT all ticket objects from the Ticket class that the property eventName = "Paradox". the last "ticket" is the alias CARE SINGLE QUOTES IN 'Paradox'
-		Query q = em.createQuery("SELECT ticket FROM Ticket ticket WHERE ticket.eventName = :SearchEvent AND ticket.isReserved = :isReserved"); // correct use
+//		Query q = em.createQuery("SELECT ticket FROM Ticket ticket WHERE ticket.eventName = :SearchEvent AND ticket.isReserved = :isReserved"); // correct use
+		Query q = em.createNamedQuery("searchByEventName"); // this query is stored in orm.xml
 		q.setParameter("SearchEvent", SearchEvent);
 		q.setParameter("isReserved", isReserved);
 		
@@ -46,6 +48,8 @@ public class TestHarness {
 		for(Ticket next : results) {
 		System.out.println(next);
 		}
+		//PRINT THE AMOUNT OF EXISTING TICKETS THAT ARE NOT RESERVED
+		System.out.println("There a total of "+results.size()+ " tickets returned"); //Works but wrong practice, waste of resources
 		
 		//ADD A TICKET
 //		Ticket ticket1 = new Ticket(6, "Paradox", "12th of july", 40, 0);
@@ -53,7 +57,7 @@ public class TestHarness {
 		
 		//CREATE MULTIPLE NEW USERS (THIS IS FOR TESTING, THE SAME PRINCIPLE CAN BE APPLIED FOR TICKETS)
 //		 for(int i=4; i<11; i++){
-//			 User newUser = new User(i,"Stavros","Filippidis","6986221010", "filip123go", "Ss6946576152","stavros489@hotmail.com", 0);
+//			 User newUser = new User(i,"Stavros","Filippidis","6986221010", "filip123go", "46576152","stavros489@hotmail.com", 0);
 //			 em.persist(newUser); //persist it for passing to db
 //        }
 		 

@@ -2,29 +2,32 @@ package com.stavros.ticketmanagement;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.jws.WebService;
 
 import com.stavros.ticketmanagement.dataaccess.TicketDataAccess;
 import com.stavros.ticketmanagement.domain.Ticket;
 
 @Stateless
-public class TicketManagementImplementation implements TicketManagmentService {
+@WebService(name="TicketManagementWebService")
+public class TicketManagementImplementation implements TicketManagmentServiceRemote, TicketManagementServiceLocal  {
 	
+	@EJB
 	private TicketDataAccess dao;
+	
 
-	@Override
-	public void registerTicket(Ticket newTicket) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public List<Ticket> getAllTicket() {
-		return null;
+		return dao.findAll();
 	}
 
-	@Override
-	public List<Ticket> searchByEventName(String eventName) {
+
+	public void registerTicket(Ticket newTicket) {
+		dao.insert(newTicket);
+
+	}
+
+	public List<Ticket> searchByEventName(String eventName) { 
 		return dao.findByEventName(eventName);
 	}
 

@@ -1,3 +1,4 @@
+//This is the Data Access Tier (DAO) it is used to talk to the DB
 package com.stavros.ticketmanagement.dataaccess;
 
 import java.util.List;
