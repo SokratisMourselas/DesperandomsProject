@@ -32,4 +32,18 @@ public class TicketManagementImplementation implements TicketManagmentServiceRem
 	}
 
 
+	@Override
+	public List<Ticket> findByTicketId(int ticketId) {
+		// TODO Auto-generated method stub
+		return dao.findByTicketId(ticketId);
+	}
+
+
+	@Override
+	public void reserveTicket(int ticketId) {
+		 dao.reserveTicket(ticketId);
+		
+	}
+
+
 }

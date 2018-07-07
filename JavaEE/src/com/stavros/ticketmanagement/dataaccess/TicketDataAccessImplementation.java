@@ -33,10 +33,24 @@ public class TicketDataAccessImplementation implements TicketDataAccess {
 		return q.getResultList();
 	}
 	
+	public List<Ticket> findByTicketId(int ticketId) {
+		Query q = em.createQuery("SELECT ticket FROM Ticket ticket WHERE ticket.ticketId = :SearchEvent");
+		q.setParameter("SearchEvent", ticketId);
+		return q.getResultList();
+	}
+	
 	public void insert(Ticket newTicket) {
 		em.persist(newTicket);
 		
 	} 
+	
+	public void reserveTicket(int ticketId) {
+//		Query q=em.createNamedQuery("selectAllTickets");
+		Query q = em.createQuery("UPDATE Ticket ticket SET ticket.isReserved=1 WHERE ticket.ticketId = :SearchEvent");
+		q.setParameter("SearchEvent", ticketId);
+		q.executeUpdate();
+
+	}
 
 
 }
