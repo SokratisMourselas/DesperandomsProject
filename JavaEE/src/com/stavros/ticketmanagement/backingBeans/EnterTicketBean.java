@@ -9,7 +9,6 @@ import com.stavros.ticketmanagement.domain.Ticket;
 @ManagedBean(name="enterTicketBean")
 public class EnterTicketBean {
 	
-	private int ticketId;
 	private String eventName;
 	private String eventTime;
 	private int price;
@@ -18,12 +17,6 @@ public class EnterTicketBean {
 	@EJB
 	private TicketManagementServiceLocal ticketService;	
 	
-	public int getTicketId() {
-		return ticketId;
-	}
-	public void setTicketId(int ticketId) {
-		this.ticketId = ticketId;
-	}
 	public String getEventName() {
 		return eventName;
 	}
@@ -51,7 +44,7 @@ public class EnterTicketBean {
 	
 	public String createTicket() { //must return a String and must not have any params
 		
-		Ticket newTicket = new Ticket(ticketId, eventName, eventTime, price, isReserved);
+		Ticket newTicket = new Ticket(eventName, eventTime, price, isReserved);
 		
 		try {
 			ticketService.registerTicket(newTicket);

@@ -35,21 +35,21 @@ public class TestHarness {
 //		}
 		
 		//SELECT ALL THE TICKET OBJ WERE eventName = Paradox (USER(PAGE WERE TICKETS GET SELECTED) ADMIN)
-		String SearchEvent = "EvanEscence"; // here the event name from Front will return
-		int isReserved = 1; //check if is reserved
-//		Query q = em.createQuery("SELECT ticket FROM Ticket ticket WHERE ticket.eventName like'" +SearchEvent+ "' AND ticket.isReserved like'" +isReserved+ "'"); // Bad practice :( this query says : SELECT all ticket objects from the Ticket class that the property eventName = "Paradox". the last "ticket" is the alias CARE SINGLE QUOTES IN 'Paradox'
-//		Query q = em.createQuery("SELECT ticket FROM Ticket ticket WHERE ticket.eventName = :SearchEvent AND ticket.isReserved = :isReserved"); // correct use
-		Query q = em.createNamedQuery("searchByEventName"); // this query is stored in orm.xml
-		q.setParameter("SearchEvent", SearchEvent);
-		q.setParameter("isReserved", isReserved);
-		
-		List<Ticket> results = q.getResultList();
-		//show the results of the Query q
-		for(Ticket next : results) {
-		System.out.println(next);
-		}
-		//PRINT THE AMOUNT OF EXISTING TICKETS THAT ARE NOT RESERVED
-		System.out.println("There a total of "+results.size()+ " tickets returned"); //Works but wrong practice, waste of resources
+//		String SearchEvent = "EvanEscence"; // here the event name from Front will return
+//		int isReserved = 1; //check if is reserved
+////		Query q = em.createQuery("SELECT ticket FROM Ticket ticket WHERE ticket.eventName like'" +SearchEvent+ "' AND ticket.isReserved like'" +isReserved+ "'"); // Bad practice :( this query says : SELECT all ticket objects from the Ticket class that the property eventName = "Paradox". the last "ticket" is the alias CARE SINGLE QUOTES IN 'Paradox'
+////		Query q = em.createQuery("SELECT ticket FROM Ticket ticket WHERE ticket.eventName = :SearchEvent AND ticket.isReserved = :isReserved"); // correct use
+//		Query q = em.createNamedQuery("searchByEventName"); // this query is stored in orm.xml
+//		q.setParameter("SearchEvent", SearchEvent);
+//		q.setParameter("isReserved", isReserved);
+//		
+//		List<Ticket> results = q.getResultList();
+//		//show the results of the Query q
+//		for(Ticket next : results) {
+//		System.out.println(next);
+//		}
+//		//PRINT THE AMOUNT OF EXISTING TICKETS THAT ARE NOT RESERVED
+//		System.out.println("There a total of "+results.size()+ " tickets returned"); //Works but wrong practice, waste of resources
 		
 		//ADD A TICKET
 //		Ticket ticket1 = new Ticket(6, "Paradox", "12th of july", 40, 0);
@@ -62,10 +62,10 @@ public class TestHarness {
 //        }
 		 
 		//CREATE MULTIPLE NEW TICKETS (ADMIN)
-//		 for(int j=7; j<50; j++){
-//			 Ticket ticket1 = new Ticket(j, "Paradox", "12th of july", 40, 0);
-//			 em.persist(ticket1); //persist it for passing to db
-//        }
+		 for(int j=50; j<60; j++){
+			 Ticket ticket1 = new Ticket( "Paradox", "12th of july", 40, 0);
+			 em.persist(ticket1); //persist it for passing to db
+        }
 		
 		
 		

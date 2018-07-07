@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity //Make the class usable from JPA (We store data to db with this class)
-//@XmlRootElement
+@XmlRootElement
 public class Ticket implements java.io.Serializable {
 	
 	
@@ -32,16 +32,13 @@ public class Ticket implements java.io.Serializable {
 	private int price;
 	private int isReserved;
 	 
-	@OneToMany(cascade=CascadeType.MERGE) // in the events of an un-persistence obj being found in the Nnotes collection jpa is free to automatically call persist on that obj
-	private Set<Note> notes; //this is used to keep a reference of the relative notes to each ticket. Its a collection (Set is better for DBs)Set: collection on obj with no particular order and no duplicate obj
-	
-//	@ManyToOne  //(cascade=CascadeType.PERSIST) // this should be manytoone
-//	private Set<User> users;
-	
-	public Ticket(int ticketId, String eventName, String eventTime, int price, int isReserved) {
+//	@OneToMany(cascade=CascadeType.MERGE) // in the events of an un-persistence obj being found in the Nnotes collection jpa is free to automatically call persist on that obj
+//	private Set<Note> notes; //this is used to keep a reference of the relative notes to each ticket. Its a collection (Set is better for DBs)Set: collection on obj with no particular order and no duplicate obj
+
+
+	public Ticket(String eventName, String eventTime, int price, int isReserved) {
 		super();
-		this.notes = new HashSet<Note>();
-		this.ticketId = ticketId;
+//		this.notes = new HashSet<Note>();
 		this.eventName = eventName;
 		this.eventTime = eventTime;
 		this.price = price;
@@ -81,13 +78,13 @@ public class Ticket implements java.io.Serializable {
 		this.isReserved = isReserved;
 	}
 
-	public Set<Note> getNotes() {
-		return notes;
-	}
+//	public Set<Note> getNotes() {
+//		return notes;
+//	}
 
-	public void setNotes(Set<Note> notes) {
-		this.notes = notes;
-	}
+//	public void setNotes(Set<Note> notes) {
+//		this.notes = notes;
+//	}
 
 	public String getEventName() {
 		return eventName;
@@ -106,10 +103,10 @@ public class Ticket implements java.io.Serializable {
 	
 	//bsn methods
 	//add a note
-	public void addNote(String newNoteText) {
-		Note newNote=new Note(newNoteText);
-		this.notes.add(newNote);
-	}
+//	public void addNote(String newNoteText) {
+//		Note newNote=new Note(newNoteText);
+//		this.notes.add(newNote);
+//	}
 	
 	//add a user
 //	public void addUser(int userId, String userName, String password, String email, int accessLevel) {
@@ -119,10 +116,10 @@ public class Ticket implements java.io.Serializable {
 	
 	
 
-	public Set<Note> getAllNotes() {
-		// TODO Auto-generated method stub
-		return this.notes;
-	}
+//	public Set<Note> getAllNotes() {
+//		// TODO Auto-generated method stub
+//		return this.notes;
+//	}
 	
 	
 }

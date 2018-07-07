@@ -13,5 +13,7 @@ public interface TicketDataAccess {
 	public void insert (Ticket newTicket);
 	public List<Ticket> findAll();
 	public List<Ticket> findByEventName(String eventName);
+	public List<Ticket> findByTicketId(int ticketId);
+	public void reserveTicket(int ticketId);
 
 }
